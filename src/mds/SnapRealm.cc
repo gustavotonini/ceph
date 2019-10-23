@@ -598,6 +598,9 @@ void SnapRealm::merge_to(SnapRealm *newparent)
 {
   if (!newparent)
     newparent = parent;
+  if (!newparent)
+    dout(0) << "snap info on root inode is corrupted. Try running cephfs-data-scan init to fix it" << dendl;
+	  
   dout(10) << "merge to " << *newparent << " on " << *newparent->inode << dendl;
 
   assert(open_past_children.empty());
